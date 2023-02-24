@@ -1,0 +1,24 @@
+class Solution{
+public:	
+	// calculate the maximum sum with out adjacent
+	
+	int solve(int *arr,int i,int n,vector<int>&dp)
+	{
+	    if(i>=n)
+	    {
+	        return 0;
+	    }
+	    if(dp[i]!=-1)
+	    {
+	        return dp[i];
+	    }
+	    int inc=solve(arr,i+2,n,dp)+arr[i];
+	    int exc=solve(arr,i+1,n,dp);
+	    dp[i]=max(inc,exc);
+	    return dp[i];
+	}
+	int findMaxSum(int *arr, int n) {
+	    // code here
+	    vector<int>dp(n+1,-1);
+	    return solve(arr,0,n,dp);
+	}
